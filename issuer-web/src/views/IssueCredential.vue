@@ -9,7 +9,7 @@
         <v-row>
           <v-col cols="12">
             <v-icon class="mx-3" color="success">fas fa-wifi</v-icon>
-            Connected to the Issuer Agent
+            Connected to the CA
           </v-col>
         </v-row>
         <v-row v-if="!issued">
@@ -22,19 +22,19 @@
               color="secondary darken-2"
               class="mx-3"
             ></v-progress-circular>
-            Credential Offer sent. Waiting for you to accept it...
+            Credential Offer sent. Waiting for them to accept it...
           </v-col>
         </v-row>
         <v-row v-if="issued">
           <v-col cols="12">
             <v-icon class="mx-3" color="success">fas fa-handshake</v-icon>
-            You accepted the Credential Offer.
+            They accepted the Credential Offer.
           </v-col>
         </v-row>
         <v-row v-if="issued">
           <v-col cols="12">
             <v-icon class="mx-3" color="success">fas fa-check-circle</v-icon>
-            Your Credential has been Issued!
+            Their Credential has been Issued!
           </v-col>
         </v-row>
       </v-container>
@@ -43,9 +43,9 @@
 
       <v-container fluid v-if="issued">
         <p>
-          Congratulations, your credential has been issued!
+          Congratulations, their credential has been issued!
           <br />
-          You will receive a notification to store the credential in your
+          They will receive a notification to store the credential in their
           wallet.
         </p>
         <p>

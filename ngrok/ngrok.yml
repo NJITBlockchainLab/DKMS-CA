@@ -4,4 +4,4 @@ tunnels:
     proto: http
     bind-tls: true
 version: "1"
-authtoken: 2bk9OkOYmeZ2JuQiJrY3tn4du6v_3MPpEfyiwuMQwXYt3LWH3
+authtoken:

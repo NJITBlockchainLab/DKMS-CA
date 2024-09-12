@@ -5,11 +5,11 @@
 <template>
   <v-container fluid>
     <v-card class="mx-auto my-2 lighten-4" max-width="800" tile>
-      <v-card-title class="headline mb-1">Connect with Issuer</v-card-title>
+      <v-card-title class="headline mb-1">Connect with CA</v-card-title>
 
       <p>
-        Scan the QR code using a Trusted Digital Wallet to establish a
-        connection with the Issuer.
+        Scan the QR code using a FHWA vehicle end to establish a
+        connection with the CA.
       </p>
 
       <p>
@@ -22,14 +22,7 @@
 
       <QRCode v-if="qrKey > 0" :value="inviteURL" :width="width" :key="qrKey" />
 
-      <v-container>
-        <v-btn color="white" :href="`${deeplinkPrefix}?d_m=${base64Invitation}`">
-          <v-icon left light>fas fa-external-link-alt</v-icon>
-          Open in a Trusted Digital Wallet
-        </v-btn>
-      </v-container>
-
-      <v-divider class="mx-4"></v-divider>
+            <v-divider class="mx-4"></v-divider>
 
       <v-container fluid>
         <v-row align="center" justify="space-between" class="mr-2">
@@ -74,9 +67,15 @@ export default class Connect extends Vue {
     this.$store
       .dispatch("connection/getNewConnection")
       .then((result: Connection) => {
+        
+        //this.base64Invitation = JSON.stringify(qrCodeData);
+        //console.log("Base64 encoded invitation:", this.base64Invitation);
         this.base64Invitation = btoa(JSON.stringify(result.invite));
-        this.inviteURL =
-          window.location.origin + "?c_i=" + this.base64Invitation;
+        const qrCodeData = {
+          invitation_url:  window.location.origin + "?c_i=" + this.base64Invitation,
+          agent: 'ca'
+        }; 
+        this.inviteURL = JSON.stringify(qrCodeData);
         this.qrKey += 1; // force refresh of qrcode component
       });
   }
